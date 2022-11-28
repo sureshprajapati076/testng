@@ -41,6 +41,13 @@
             <version>2.11.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>reportng</artifactId>
+            <version>1.2.2</version>
+            <scope>test</scope>
+        </dependency>
+
 
     </dependencies>
 
