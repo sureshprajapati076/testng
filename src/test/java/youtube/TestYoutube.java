@@ -2,11 +2,17 @@ package youtube;
 
 
 import io.cucumber.java.eo.Se;
+import jdk.internal.org.jline.terminal.impl.ExecPty;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -14,6 +20,14 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import utils.SeleniumDriver;
 import utils.SeleniumDriverVersion2;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.time.Duration;
+import java.util.Properties;
+import java.util.function.Function;
 
 @Listeners(listners.ListnerTest.class)
 public class TestYoutube {
@@ -62,7 +76,56 @@ public class TestYoutube {
 
 
     @BeforeTest
-    public void initDrivers() {
+    public void initDrivers() throws IOException {
+
+
+       // BufferedReader bufferedReader= new BufferedReader();
+
+        /*
+        Properties properties= new Properties();
+        properties.load(new FileReader("config/configuration.properties"));
+
+        System.out.println(System.getProperty("os.version"));
+        System.out.println(System.getProperty("os.name"));
+
+
+        System.out.println(properties.getProperty("env"));
+        System.out.println(properties.get("env"));
+
+
+
+
+        //explicit wait
+        WebDriverWait wait= new WebDriverWait(this.webDriver, Duration.ofSeconds(40));
+        WebElement webElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div")));
+
+
+        Wait<WebDriver> wait1=new FluentWait(this.webDriver)
+                .withTimeout(Duration.ofSeconds(30))
+                .pollingEvery(Duration.ofSeconds(5))
+                .ignoring(NoSuchElementException.class);
+
+
+        WebElement foo=wait.until(new Function<WebDriver, WebElement>() {
+
+            @Override
+            public WebElement apply(WebDriver webDriver) {
+                return null;
+            }
+
+            @Override
+            public <V> Function<V, WebElement> compose(Function<? super V, ? extends WebDriver> before) {
+                return Function.super.compose(before);
+            }
+
+            @Override
+            public <V> Function<WebDriver, V> andThen(Function<? super WebElement, ? extends V> after) {
+                return Function.super.andThen(after);
+            }
+        });
+
+
+*/
 
         /*below is for method1 to get driver instance
 
