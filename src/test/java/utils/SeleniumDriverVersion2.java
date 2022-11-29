@@ -11,7 +11,7 @@ public class SeleniumDriverVersion2 {
 
 
     public static WebDriver createDriver() {
-        if(webDriver==null) {
+        if (webDriver == null) {
             webDriver = new ChromeDriver();
             webDriver.manage().window().maximize();
             webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));

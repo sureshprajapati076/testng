@@ -1,33 +1,19 @@
 package youtube;
 
 
-import io.cucumber.java.eo.Se;
-import jdk.internal.org.jline.terminal.impl.ExecPty;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import utils.SeleniumDriver;
 import utils.SeleniumDriverVersion2;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.time.Duration;
-import java.util.Properties;
-import java.util.function.Function;
 
 @Listeners(listners.ListnerTest.class)
 public class TestYoutube {
@@ -79,7 +65,7 @@ public class TestYoutube {
     public void initDrivers() throws IOException {
 
 
-       // BufferedReader bufferedReader= new BufferedReader();
+        // BufferedReader bufferedReader= new BufferedReader();
 
         /*
         Properties properties= new Properties();
@@ -133,7 +119,6 @@ public class TestYoutube {
         this.webDriver = SeleniumDriver.getDriver();
 
          */
-
 
 
         //below is for method2 to get driver instance

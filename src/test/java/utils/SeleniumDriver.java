@@ -15,12 +15,12 @@ public class SeleniumDriver {
         threadLocalDriver.set(webDriver1);
     }
 
-    public static WebDriver getDriver(){
+    public static WebDriver getDriver() {
         return threadLocalDriver.get();
     }
 
-    public static void setupDriver(){
-        if(getDriver()==null) new SeleniumDriver();
+    public static void setupDriver() {
+        if (getDriver() == null) new SeleniumDriver();
     }
 
 

@@ -5,7 +5,6 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import utils.SeleniumDriver;
 import utils.SeleniumDriverVersion2;
 
 import java.io.File;
@@ -19,14 +18,13 @@ public class ListnerTest implements ITestListener {
         System.out.println("Taking Screenshot:");
 
 // process 1
-      //  File screenshotFile=((TakesScreenshot) SeleniumDriver.getDriver()).getScreenshotAs(OutputType.FILE);
+        //  File screenshotFile=((TakesScreenshot) SeleniumDriver.getDriver()).getScreenshotAs(OutputType.FILE);
 
         //process 2
-        File screenshotFile=((TakesScreenshot) SeleniumDriverVersion2.createDriver()).getScreenshotAs(OutputType.FILE);
+        File screenshotFile = ((TakesScreenshot) SeleniumDriverVersion2.createDriver()).getScreenshotAs(OutputType.FILE);
 
 
-
-        File DestFile=new File("target/screenshot.png");
+        File DestFile = new File("target/screenshot.png");
 //Copy file at destination
         try {
             FileUtils.copyFile(screenshotFile, DestFile);
