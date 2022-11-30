@@ -2,6 +2,7 @@ package youtube;
 
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
@@ -24,6 +25,10 @@ public class RestAssureTest {
 
         Response response = get("https://reqres.in/api/users?page=2");
 
+
+        JsonPath jsonPath=response.jsonPath();
+
+        System.out.println((String) jsonPath.get("data[0].email"));
 
         //working with jsonPath
 
