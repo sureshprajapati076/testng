@@ -30,6 +30,8 @@ public class PageAction {
     }
 
 
-
-
+    public void closeDriver() {
+        webDriver.close();
+        webDriver.quit();
+    }
 }

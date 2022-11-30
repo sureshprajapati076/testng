@@ -30,6 +30,7 @@ public class YoutubeSteps {
 
     @Then("Verify user sees results")
     public void verifyUserSeesResults() {
+        pageAction.closeDriver();
         System.out.println("Verified!!!");
     }
 
@@ -43,9 +44,9 @@ public class YoutubeSteps {
         }
     }
 
-    @After
-    public void quitDriver(){
-        SeleniumDriver.getDriver().close();
-        SeleniumDriver.getDriver().quit();
-    }
+//    @After
+//    public void quitDriver(){
+//        SeleniumDriver.getDriver().close();
+//        SeleniumDriver.getDriver().quit();
+//    }
 }
