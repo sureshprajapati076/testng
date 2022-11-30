@@ -1,6 +1,8 @@
 package youtube;
 
 
+import io.restassured.RestAssured;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,12 +16,54 @@ import org.testng.annotations.Test;
 import utils.SeleniumDriverVersion2;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Listeners(listners.ListnerTest.class)
 public class TestYoutube {
 
 
     WebDriver webDriver;
+
+
+
+    @Test
+    public void testBrokenLinks() {
+
+        this.webDriver.get("https://www.citi.com/");
+
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        List<WebElement> links = webDriver.findElements(By.xpath("//a"));
+
+        List<String> hrefs = links.stream().map(link->link.getAttribute("href")).filter(href-> StringUtils.isNotBlank(href)).collect(Collectors.toList());
+
+        System.out.println(hrefs);
+
+        for(String href: hrefs)
+            if(RestAssured.get(href).statusCode()>=400){
+                System.out.println(href + " _BROKEN LINK FOUND");
+            }
+
+
+
+
+
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
 
     @Test
