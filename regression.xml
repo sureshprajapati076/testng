@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" parallel="classes" thread-count="2" name="C:/Users/sures/Desktop/testng/src/test/java/youtube">
+        <classes>
+            <class name="youtube.TestNGTest1">
+                <parameter name="param1" value="Regression" />
+                <parameter name="param2" value="Testing" />
+                <methods>
+                    <include name="testA"/>
+                </methods>
+            </class>
+
+            <class name="youtube.TestNGTest2">
+                <parameter name="param1" value="Regression" />
+                <parameter name="param2" value="Testing" />
+                <methods>
+                    <include name="testB"/>
+                </methods>
+            </class>
+
+        </classes>
+    </test>
+</suite>
