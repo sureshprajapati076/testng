@@ -7,6 +7,7 @@ import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.testng.annotations.BeforeSuite;
 import pageaction.PageAction;
 import utils.SeleniumDriver;
 
@@ -16,6 +17,11 @@ public class YoutubeSteps {
     @Given("User is in youtube {string} homepage")
     public void userIsInYoutubeHomepage(String url) {
         pageAction.openUrl(url);
+    }
+
+    @BeforeSuite
+    public void beforeSuites(){
+        System.out.println("BEFORE_SUITE");
     }
 
     @And("User enters text {string} in search box")
