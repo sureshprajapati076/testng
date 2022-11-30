@@ -40,6 +40,16 @@ public class TestYoutube {
         WebElement searchButton = this.webDriver.findElement(By.xpath("//button[@id='search-icon-legacy']//yt-icon[@class='style-scope ytd-searchbox']"));
 
         Actions actions = new Actions(this.webDriver);
+        /* Adding drag and drop
+        actions.clickAndHold().pause(2).moveToElement(null).release().build().perform();
+        //OR
+        actions.dragAndDrop(null,null);
+
+         */
+
+        //double click
+        //actions.doubleClick().build().perform();
+
         Action action = actions.moveToElement(searchBox).click().sendKeys("Automation").build();
         action.perform();
 
