@@ -2,12 +2,27 @@ package utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 
 public class SeleniumDriver {
 
     private static final ThreadLocal<WebDriver> threadLocalDriver = new ThreadLocal<>();
+    private static final ThreadLocal<SoftAssert> threadLocalSoftAssert = new ThreadLocal<>();
+
+    public static void setUpSoftAssert(){
+        if(getSoftAssert()==null){
+            threadLocalSoftAssert.set(new SoftAssert());
+        }
+    }
+    public static SoftAssert getSoftAssert() {
+        return threadLocalSoftAssert.get();
+    }
+
+    public static void quitSoftAssert(){
+        threadLocalSoftAssert.set(null);
+    }
 
 
     private SeleniumDriver() {
