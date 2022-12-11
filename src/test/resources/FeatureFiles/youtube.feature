@@ -8,5 +8,6 @@ Feature: YouTube Feature Dec 2022
     Then Verify user sees results
 
     Examples:
-    |homepage|searchText|
-    |https://youtube.com|Automation|
+      | homepage            | searchText  |
+      | https://youtube.com | Automation1 |
+      | https://youtube.com | Automation2|

@@ -38,6 +38,15 @@ public class SeleniumDriver {
         if (getDriver() == null) new SeleniumDriver();
     }
 
+    public static void closeDriver(){
+
+        if(threadLocalDriver.get()!=null){
+            getDriver().close();
+            getDriver().quit();
+            threadLocalDriver.set(null);
+        }
+    }
+
 
     private WebDriver createDriver() {
         WebDriver webDriver = new ChromeDriver();

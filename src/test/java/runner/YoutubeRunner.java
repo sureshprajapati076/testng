@@ -1,13 +1,11 @@
 package runner;
 
 
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
-import org.junit.runner.RunWith;
+
 import basepackage.BaseRunnerBrowser;
+import io.cucumber.testng.CucumberOptions;
 
 
-@RunWith(Cucumber.class)
 @CucumberOptions(plugin = {"pretty",
         "timeline:target/cucumber-timeline/",
         "json:target/cucumber-report/cucumber.json",
