@@ -11,6 +11,7 @@ public class PageAction {
     PageLocator pageLocator;
 
     public PageAction() {
+        System.out.println("V0 Started:");
         SeleniumDriver.setupDriver();
         webDriver = SeleniumDriver.getDriver();
         pageLocator =  new PageLocator();
