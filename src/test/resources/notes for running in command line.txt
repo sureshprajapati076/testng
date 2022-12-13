@@ -47,12 +47,4 @@ it will replace buildrunner variable with YoutubeRunner5.java and replace tag wi
 
 Running specific xml file from maven:
 
-Easiest solution would be, add the below lines in surefire plugin.
-
-<suiteXmlFiles>
-    <!-- pass testng.xml files as argument from command line -->
-    <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
-</suiteXmlFiles>
-And run your xml file as below,
-
-mvn clean test -Dsurefire.suiteXmlFiles=/path/to/testng.xml
+mvn clean test -D"surefire.suiteXmlFiles"=sanity.xml
