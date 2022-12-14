@@ -1,7 +1,9 @@
 package pageaction;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import pagelocators.PageLocator;
 import utils.SeleniumDriver;
 
@@ -34,5 +36,38 @@ public class PageAction {
     public void closeDriver() {
         webDriver.close();
         webDriver.quit();
+    }
+
+    public void clickSignup() throws InterruptedException {
+        Thread.sleep(2000);
+        pageLocator.signup.click();
+        Thread.sleep(2000);
+
+        System.out.println("FEMALE: is selected: "+pageLocator.gender.get(0).isSelected());
+
+        pageLocator.gender.get(0).click();
+
+        Thread.sleep(2000);
+
+        System.out.println("FEMALE: is selected: "+pageLocator.gender.get(0).isSelected());
+        Thread.sleep(2000);
+
+        Select mySelect = new Select(pageLocator.month);
+
+        mySelect.getOptions().forEach(x-> System.out.println(x.getText()));
+
+
+
+        mySelect.selectByVisibleText("Jul");
+
+      //  mySelect.selectByIndex(5);
+
+
+        System.out.println("i");
+
+        //pageLocator.month.getOptions().forEach(x-> System.out.println(x.getText()));
+
+
+
     }
 }
