@@ -48,3 +48,13 @@ it will replace buildrunner variable with YoutubeRunner5.java and replace tag wi
 Running specific xml file from maven:
 
 mvn clean test -D"surefire.suiteXmlFiles"=sanity.xml
+
+
+To Run Groups using testng.xml or mvn:
+
+//mvn clean test -D"groups"="sanity1"
+// mvn clean test -D"groups"="sanity1" -Dtest="TestNgGroup.java,Youtube.java"
+// OR mvn clean test -Dtest="/youtube/**,/anyotherpackageyouwanttorun/**"
+
+for testng.xml example check for groups.xml file configuration...
+mvn clean test -D"surefire.suiteXmlFiles"=groups.xml
