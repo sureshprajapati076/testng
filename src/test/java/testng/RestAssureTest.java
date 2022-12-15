@@ -1,4 +1,4 @@
-package youtube;
+package testng;
 
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
@@ -6,15 +6,11 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -37,7 +33,7 @@ public class RestAssureTest {
             if (conn != null) {
 
 //                Statement stat = conn.createStatement();
-                PreparedStatement psInsert = conn.prepareStatement("select * from customer");
+                PreparedStatement psInsert = conn.prepareStatement("select * from school");
 
                 ResultSet rs= psInsert.executeQuery();
 

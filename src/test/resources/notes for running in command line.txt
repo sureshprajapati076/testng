@@ -40,9 +40,9 @@ NOW,
 
 we can run below command in terminal:
 
-mvn test -D"cucumber.filter.tags"="@youtube" -Dbuildrunner="YoutubeRunner5.java"
+mvn test -D"cucumber.filter.tags"="@testng" -Dbuildrunner="YoutubeRunner5.java"
 
-it will replace buildrunner variable with YoutubeRunner5.java and replace tag with @youtube which is matching with feature file and it runs well.
+it will replace buildrunner variable with YoutubeRunner5.java and replace tag with @testng which is matching with feature file and it runs well.
 
 
 Running specific xml file from maven:
@@ -54,7 +54,7 @@ To Run Groups using testng.xml or mvn:
 
 //mvn clean test -D"groups"="sanity1"
 // mvn clean test -D"groups"="sanity1" -Dtest="TestNgGroup.java,Youtube.java"
-// OR mvn clean test -Dtest="/youtube/**,/anyotherpackageyouwanttorun/**"
+// OR mvn clean test -Dtest="/testng/**,/anyotherpackageyouwanttorun/**"
 
 for testng.xml example check for groups.xml file configuration...
 mvn clean test -D"surefire.suiteXmlFiles"=groups.xml

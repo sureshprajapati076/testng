@@ -1,4 +1,4 @@
-package youtube;
+package testng;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,8 +9,6 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.time.LocalDateTime;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -84,12 +82,12 @@ public class TestNGTest1 {
 //            waitForNSeconds(5);
 //        });
 
-        openWindowByTitle(driver,"youtube",allWindows);
+        openWindowByTitle(driver, "testng",allWindows);
         waitForNSeconds(5);
 
         openWindowByTitle(driver,"twitter",allWindows);
         waitForNSeconds(5);
-        openWindowByTitle(driver,"youtube",allWindows);
+        openWindowByTitle(driver, "testng",allWindows);
 
         waitForNSeconds(5);
         openWindowByTitle(driver,"linkedin",allWindows);

@@ -1,7 +1,8 @@
-package youtube;
+package testng;
 
 
 import io.restassured.RestAssured;
+import listners.ListnerTest;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,13 +14,13 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import utils.SeleniumDriverVersion2;
+import utils.SeleniumDriver;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Listeners(listners.ListnerTest.class)
+@Listeners(ListnerTest.class)
 public class TestYoutube {
 
 
@@ -32,6 +33,7 @@ public class TestYoutube {
 
         this.webDriver.get("https://www.citi.com/");
 
+        Assert.assertTrue(false);
 
         try {
             Thread.sleep(5000);
@@ -118,6 +120,9 @@ public class TestYoutube {
     @BeforeTest
     public void initDrivers() throws IOException {
 
+        SeleniumDriver.setupDriver();
+        this.webDriver = SeleniumDriver.getDriver();
+
 
         // BufferedReader bufferedReader= new BufferedReader();
 
@@ -167,22 +172,11 @@ public class TestYoutube {
 
 */
 
-        /*below is for method1 to get driver instance
-
-        SeleniumDriver.setupDriver();
-        this.webDriver = SeleniumDriver.getDriver();
-
-         */
-
-
-        //below is for method2 to get driver instance
-        this.webDriver = SeleniumDriverVersion2.createDriver();
-
     }
 
     @AfterTest
     public void quit() {
-        this.webDriver.quit();
+        SeleniumDriver.closeDriver();
     }
 
 
