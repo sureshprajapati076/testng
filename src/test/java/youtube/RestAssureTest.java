@@ -6,6 +6,15 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -17,6 +26,46 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class RestAssureTest {
 
+
+
+    @Test
+    public void testDb(){
+//        final String SQL_INSERT = "INSERT INTO EMPLOYEE (NAME, SALARY, CREATED_DATE) VALUES (?,?,?)";
+        try (Connection conn = DriverManager.getConnection(
+                "jdbc:oracle:thin:@localhost:1521:xe", "system", "admin")) {
+
+            if (conn != null) {
+
+//                Statement stat = conn.createStatement();
+                PreparedStatement psInsert = conn.prepareStatement("select * from customer");
+
+                ResultSet rs= psInsert.executeQuery();
+
+                while(rs.next()){
+                    System.out.println(rs.getString("NAME"));
+                }
+
+
+
+//                psInsert.setString(1, "sURESH");
+//                psInsert.setBigDecimal(2, new BigDecimal(10));
+//                psInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+
+                //psInsert.executeQuery();
+
+
+
+                System.out.println("Connected to the database!");
+            } else {
+                System.out.println("Failed to make connection!");
+            }
+
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
     public void testabc() {
