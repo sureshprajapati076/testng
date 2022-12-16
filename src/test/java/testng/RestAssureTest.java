@@ -28,17 +28,18 @@ public class RestAssureTest {
     public void testDb(){
 //        final String SQL_INSERT = "INSERT INTO EMPLOYEE (NAME, SALARY, CREATED_DATE) VALUES (?,?,?)";
         try (Connection conn = DriverManager.getConnection(
-                "jdbc:oracle:thin:@localhost:1521:xe", "system", "admin")) {
+                "jdbc:oracle:thin:@localhost:1521:xe", "testng", "testng")) {
 
             if (conn != null) {
 
 //                Statement stat = conn.createStatement();
-                PreparedStatement psInsert = conn.prepareStatement("select * from school");
+                PreparedStatement psInsert = conn.prepareStatement("select * from my_school");
 
                 ResultSet rs= psInsert.executeQuery();
 
                 while(rs.next()){
-                    System.out.println(rs.getString("NAME"));
+                    System.out.print(rs.getString("school_Name"));
+                    System.out.println("\t"+rs.getString("address"));
                 }
 
 
