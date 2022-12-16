@@ -16,7 +16,7 @@ public class TestNGTest1 {
 
     @Parameters({"param1","param2"})
     @Test(groups = {"first"})
-    public void testA(@Optional String value1, @Optional String value2){
+    public void testA(@Optional(value = "xyz") String value1, @Optional String value2){
 
         System.out.println("Started TestA : at: "+ LocalDateTime.now().getSecond());
         System.out.println("Values : "+value1 + " : "+value2);
