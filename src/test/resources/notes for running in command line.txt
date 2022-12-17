@@ -53,7 +53,7 @@ mvn clean test -D"surefire.suiteXmlFiles"=sanity.xml
 To Run Groups using testng.xml or mvn:
 
 //mvn clean test -D"groups"="sanity1"
-// mvn clean test -D"groups"="sanity1" -Dtest="TestNgGroup.java,Youtube.java"
+// mvn clean test -D"groups"="sanity2" -Dtest="TestNgGroup.java"
 // OR mvn clean test -Dtest="/testng/**,/anyotherpackageyouwanttorun/**"
 
 for testng.xml example check for groups.xml file configuration...
