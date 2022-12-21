@@ -33,7 +33,7 @@ public class TestNGTest1 {
 
     private void waitForNSeconds(int n){
         try{
-            Thread.sleep(n*1000);
+            Thread.sleep(n*10000);
         }
         catch (InterruptedException ex){
 
