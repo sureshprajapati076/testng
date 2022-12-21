@@ -14,9 +14,10 @@ public class DockerTest {
     @Test
     public void test1() throws InterruptedException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setBrowserName("firefox");
+        capabilities.setBrowserName("firefox");  // comment this browser name then it will assign to any of available browser in hub
         capabilities.setPlatform(Platform.LINUX);
-        WebDriver driver = new RemoteWebDriver(capabilities);
+        WebDriver driver = new RemoteWebDriver(capabilities); // new RemoteWebDriver( new URL("http://localhost:4444/wd/hub",capabilities));
+                                                            // if we provide without URL it will use default value as local host see inside RemotewebDriver constructor
         driver.get("https://youtube.com");
         Thread.sleep(10000);
         driver.quit();
