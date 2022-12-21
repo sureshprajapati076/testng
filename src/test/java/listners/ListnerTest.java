@@ -5,7 +5,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import utils.SeleniumDriverVersion2;
+import utils.SeleniumDriver;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,7 +21,8 @@ public class ListnerTest implements ITestListener {
         //  File screenshotFile=((TakesScreenshot) SeleniumDriver.getDriver()).getScreenshotAs(OutputType.FILE);
 
         //process 2
-        File screenshotFile = ((TakesScreenshot) SeleniumDriverVersion2.createDriver()).getScreenshotAs(OutputType.FILE);
+        SeleniumDriver.setupDriver();
+        File screenshotFile = ((TakesScreenshot) SeleniumDriver.getDriver()).getScreenshotAs(OutputType.FILE);
 
 
         File DestFile = new File("target/screenshot.png");

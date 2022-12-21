@@ -3,7 +3,7 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="C:/Users/sures/Desktop/testng">
         <classes>
-                    <class name="youtube.TestNGTest1">
+                    <class name="testng.TestNGTest1">
                 <methods>
                     <include name="testA"/>
                 </methods>

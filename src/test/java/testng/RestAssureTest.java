@@ -1,4 +1,4 @@
-package youtube;
+package testng;
 
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
@@ -6,6 +6,11 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -17,6 +22,47 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class RestAssureTest {
 
+
+
+    @Test
+    public void testDb(){
+//        final String SQL_INSERT = "INSERT INTO EMPLOYEE (NAME, SALARY, CREATED_DATE) VALUES (?,?,?)";
+        try (Connection conn = DriverManager.getConnection(
+                "jdbc:oracle:thin:@localhost:1521:xe", "testng", "testng")) {
+
+            if (conn != null) {
+
+//                Statement stat = conn.createStatement();
+                PreparedStatement psInsert = conn.prepareStatement("select * from my_school");
+
+                ResultSet rs= psInsert.executeQuery();
+
+                while(rs.next()){
+                    System.out.print(rs.getString("school_Name"));
+                    System.out.println("\t"+rs.getString("address"));
+                }
+
+
+
+//                psInsert.setString(1, "sURESH");
+//                psInsert.setBigDecimal(2, new BigDecimal(10));
+//                psInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+
+                //psInsert.executeQuery();
+
+
+
+                System.out.println("Connected to the database!");
+            } else {
+                System.out.println("Failed to make connection!");
+            }
+
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
     public void testabc() {

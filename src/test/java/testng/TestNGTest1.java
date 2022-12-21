@@ -1,4 +1,4 @@
-package youtube;
+package testng;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,8 +9,6 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.time.LocalDateTime;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -18,7 +16,7 @@ public class TestNGTest1 {
 
     @Parameters({"param1","param2"})
     @Test(groups = {"first"})
-    public void testA(@Optional String value1, @Optional String value2){
+    public void testA(@Optional(value = "xyz") String value1, @Optional String value2){
 
         System.out.println("Started TestA : at: "+ LocalDateTime.now().getSecond());
         System.out.println("Values : "+value1 + " : "+value2);
@@ -84,12 +82,12 @@ public class TestNGTest1 {
 //            waitForNSeconds(5);
 //        });
 
-        openWindowByTitle(driver,"youtube",allWindows);
+        openWindowByTitle(driver, "testng",allWindows);
         waitForNSeconds(5);
 
         openWindowByTitle(driver,"twitter",allWindows);
         waitForNSeconds(5);
-        openWindowByTitle(driver,"youtube",allWindows);
+        openWindowByTitle(driver, "testng",allWindows);
 
         waitForNSeconds(5);
         openWindowByTitle(driver,"linkedin",allWindows);
