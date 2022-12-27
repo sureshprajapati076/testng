@@ -17,8 +17,17 @@ import org.testng.annotations.Test;
 import utils.SeleniumDriver;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Listeners(ListnerTest.class)
 public class TestYoutube {
@@ -29,7 +38,7 @@ public class TestYoutube {
 
 
     @Test
-    public void testBrokenLinks() {
+    public void testBrokenLinks() throws MalformedURLException {
 
         this.webDriver.get("https://www.citi.com/");
 
@@ -41,21 +50,12 @@ public class TestYoutube {
             e.printStackTrace();
         }
 
-
         List<WebElement> links = webDriver.findElements(By.tagName("a"));
 
-
-        List<String> hrefs = links.stream().map(link->link.getDomAttribute("href")).filter(StringUtils::isNotBlank).filter(url->url.startsWith("http")).collect(Collectors.toList());
-
-
-        //Below are examples....
-        System.out.println(RestAssured.get("https://itunes.apple.com/app/citi-mobile-sm/id301724680?mt=8").statusCode());
-        System.out.println(RestAssured.get("https://online.citi.com/JRS/portal/template.do?ID=Privacy#notice-at-collection").statusCode());
-        System.out.println(RestAssured.given().queryParam("ID", "Privacy").get("https://online.citi.com/JRS/portal/template.do").statusCode());
-
+        Set<String> hrefs = links.stream().map(link->link.getDomAttribute("href")).filter(StringUtils::isNotBlank).filter(url->url.startsWith("http")).collect(Collectors.toSet());
 
         for(String href: hrefs)
-            if(RestAssured.get(href).statusCode()>=400){
+            if(RestAssured.get(new URL(href.split("#")[0])).statusCode()>=400){
                 System.out.println(href + " _BROKEN LINK FOUND");
             }
             else{

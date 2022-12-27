@@ -52,7 +52,7 @@ public class SeleniumDriver {
 
     private WebDriver createDriver() {
         ChromeOptions options = new ChromeOptions();
-        Boolean headlessOption = Boolean.valueOf(System.getProperty("headless"));
+        boolean headlessOption = Boolean.parseBoolean(System.getProperty("headless"));
         options.setHeadless(headlessOption);
         WebDriver webDriver = new ChromeDriver(options);
         webDriver.manage().window().maximize();
