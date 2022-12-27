@@ -33,7 +33,7 @@ public class TestYoutube {
 
         this.webDriver.get("https://www.citi.com/");
 
-        Assert.assertTrue(false);
+      //  Assert.assertTrue(false);
 
         try {
             Thread.sleep(5000);
@@ -42,22 +42,25 @@ public class TestYoutube {
         }
 
 
-        List<WebElement> links = webDriver.findElements(By.xpath("//a"));
+        List<WebElement> links = webDriver.findElements(By.tagName("a"));
 
-        List<String> hrefs = links.stream().map(link->link.getAttribute("href")).filter(href-> StringUtils.isNotBlank(href)).collect(Collectors.toList());
 
-        System.out.println(hrefs);
+        List<String> hrefs = links.stream().map(link->link.getDomAttribute("href")).filter(StringUtils::isNotBlank).filter(url->url.startsWith("http")).collect(Collectors.toList());
+
+
+        //Below are examples....
+        System.out.println(RestAssured.get("https://itunes.apple.com/app/citi-mobile-sm/id301724680?mt=8").statusCode());
+        System.out.println(RestAssured.get("https://online.citi.com/JRS/portal/template.do?ID=Privacy#notice-at-collection").statusCode());
+        System.out.println(RestAssured.given().queryParam("ID", "Privacy").get("https://online.citi.com/JRS/portal/template.do").statusCode());
+
 
         for(String href: hrefs)
             if(RestAssured.get(href).statusCode()>=400){
                 System.out.println(href + " _BROKEN LINK FOUND");
             }
-
-
-
-
-
-
+            else{
+                System.out.println(href);
+            }
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
