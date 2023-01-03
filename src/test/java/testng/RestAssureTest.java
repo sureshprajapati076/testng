@@ -149,10 +149,18 @@ public class RestAssureTest {
                 given().relaxedHTTPSValidation().baseUri("http://localhost:9596").headers(headers).queryParam("pageNo", "3").when()
                         .get("/random/user/getall");
 
-        String results = response
+        Type listType1 = new TypeToken<List<RandomUser>>() {
+        }.getType();
+
+        List<RandomUser> results = response
                 .then().statusCode(201)
                 .header("MyResponseHeader", "MyValue")
-                .extract().asString();
+                .extract().as(listType1);   // you must have gson or any serializer/de-serializer in class path
+                                            // for this example we have gson in classpath, import in maven.
+
+        Assert.assertNotNull(results);
+        Assert.assertEquals(results.size(), 5);
+        Assert.assertEquals(results.get(0).gender, "female");
 
         List<LinkedHashMap<String, Object>> result1 = response.jsonPath().get();
 
