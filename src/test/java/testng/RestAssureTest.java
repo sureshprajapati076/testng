@@ -11,7 +11,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.get;
@@ -111,6 +113,8 @@ public class RestAssureTest {
         // For POST method
 
 
+
+
         Map<String, Object> requestbody = new LinkedHashMap<>();
 
         Header header = new Header("content-type", "application/json");
@@ -126,6 +130,53 @@ public class RestAssureTest {
                 .body("data.name", equalTo("suresh"))
                 .body("data.email", containsString("@"))
                 .log().all();
+
+
+    }
+
+    @Test
+    public  void  testLocalRandomUser(){
+
+
+        //http://localhost:9596/random/user/getall?pageNo=3
+        List<Header> headerList = Arrays.asList(
+                new Header("sid","10111"),
+                new Header("sesion","valid"),
+                new Header("active","true")
+        );
+        Headers headers = new Headers(headerList);
+
+        Response response=
+        given().relaxedHTTPSValidation().baseUri("http://localhost:9596").headers(headers).queryParam("pageNo","3").when()
+                .get("/random/user/getall");
+
+        String results =response
+                .then().statusCode(201)
+                .header("MyResponseHeader","MyValue")
+                .extract().asString();
+
+        List<LinkedHashMap<String,Object>> result1 = response.jsonPath().get();
+
+
+        System.out.println(result1.get(0));
+        System.out.println( result1.get(1).get("name"));
+
+        LinkedHashMap<String, LinkedHashMap<String,String>> test1 = (LinkedHashMap<String, LinkedHashMap<String,String>>) result1.get(2).get("location");
+
+        System.out.println(test1.get("coordinates").get("latitude"));
+        System.out.println(test1.get("coordinates").get("longitude"));
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     }
