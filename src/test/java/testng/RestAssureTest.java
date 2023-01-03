@@ -1,11 +1,15 @@
 package testng;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Type;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -25,9 +29,8 @@ import static org.hamcrest.Matchers.equalTo;
 public class RestAssureTest {
 
 
-
     @Test
-    public void testDb(){
+    public void testDb() {
 //        final String SQL_INSERT = "INSERT INTO EMPLOYEE (NAME, SALARY, CREATED_DATE) VALUES (?,?,?)";
         try (Connection conn = DriverManager.getConnection(
                 "jdbc:oracle:thin:@localhost:1521:xe", "testng", "testng")) {
@@ -37,13 +40,12 @@ public class RestAssureTest {
 //                Statement stat = conn.createStatement();
                 PreparedStatement psInsert = conn.prepareStatement("select * from my_school");
 
-                ResultSet rs= psInsert.executeQuery();
+                ResultSet rs = psInsert.executeQuery();
 
-                while(rs.next()){
+                while (rs.next()) {
                     System.out.print(rs.getString("school_Name"));
-                    System.out.println("\t"+rs.getString("address"));
+                    System.out.println("\t" + rs.getString("address"));
                 }
-
 
 
 //                psInsert.setString(1, "sURESH");
@@ -51,7 +53,6 @@ public class RestAssureTest {
 //                psInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
 
                 //psInsert.executeQuery();
-
 
 
                 System.out.println("Connected to the database!");
@@ -74,7 +75,7 @@ public class RestAssureTest {
         Response response = get("https://reqres.in/api/users?page=2");
 
 
-        JsonPath jsonPath=response.jsonPath();
+        JsonPath jsonPath = response.jsonPath();
 
         System.out.println((String) jsonPath.get("data[0].email"));
 
@@ -113,8 +114,6 @@ public class RestAssureTest {
         // For POST method
 
 
-
-
         Map<String, Object> requestbody = new LinkedHashMap<>();
 
         Header header = new Header("content-type", "application/json");
@@ -135,49 +134,45 @@ public class RestAssureTest {
     }
 
     @Test
-    public  void  testLocalRandomUser(){
+    public void testLocalRandomUser() {
 
 
         //http://localhost:9596/random/user/getall?pageNo=3
         List<Header> headerList = Arrays.asList(
-                new Header("sid","10111"),
-                new Header("sesion","valid"),
-                new Header("active","true")
+                new Header("sid", "10111"),
+                new Header("sesion", "valid"),
+                new Header("active", "true")
         );
         Headers headers = new Headers(headerList);
 
-        Response response=
-        given().relaxedHTTPSValidation().baseUri("http://localhost:9596").headers(headers).queryParam("pageNo","3").when()
-                .get("/random/user/getall");
+        Response response =
+                given().relaxedHTTPSValidation().baseUri("http://localhost:9596").headers(headers).queryParam("pageNo", "3").when()
+                        .get("/random/user/getall");
 
-        String results =response
+        String results = response
                 .then().statusCode(201)
-                .header("MyResponseHeader","MyValue")
+                .header("MyResponseHeader", "MyValue")
                 .extract().asString();
 
-        List<LinkedHashMap<String,Object>> result1 = response.jsonPath().get();
+        List<LinkedHashMap<String, Object>> result1 = response.jsonPath().get();
 
 
         System.out.println(result1.get(0));
-        System.out.println( result1.get(1).get("name"));
+        System.out.println(result1.get(1).get("name"));
 
-        LinkedHashMap<String, LinkedHashMap<String,String>> test1 = (LinkedHashMap<String, LinkedHashMap<String,String>>) result1.get(2).get("location");
+        LinkedHashMap<String, LinkedHashMap<String, String>> test1 = (LinkedHashMap<String, LinkedHashMap<String, String>>) result1.get(2).get("location");
 
         System.out.println(test1.get("coordinates").get("latitude"));
         System.out.println(test1.get("coordinates").get("longitude"));
 
 
-
-
-
-
-
-
-
-
-
-
-
+        Gson gson = new Gson();
+        Type listType = new TypeToken<List<RandomUser>>() {
+        }.getType();
+        List<RandomUser> userList = gson.fromJson(response.then().extract().asString(), listType);
+        Assert.assertNotNull(userList);
+        Assert.assertEquals(userList.size(), 5);
+        Assert.assertEquals(userList.get(0).gender, "female");
 
     }
 }
