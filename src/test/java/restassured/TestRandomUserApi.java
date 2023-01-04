@@ -39,9 +39,9 @@ public class TestRandomUserApi {
                 .header("content-type","application/json")
                 .pathParam("path1","api")
                 .queryParam("results","3")
-                .when()
+        .when()
                 .get("https://randomuser.me/{path1}")
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200);
     }
