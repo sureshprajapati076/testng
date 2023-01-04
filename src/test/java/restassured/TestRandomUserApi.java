@@ -32,6 +32,20 @@ public class TestRandomUserApi {
 
     }
 
+    @Test
+    public void testPathParam(){
+        given()
+                .relaxedHTTPSValidation()
+                .header("content-type","application/json")
+                .pathParam("path1","api")
+                .queryParam("results","3")
+                .when()
+                .get("https://randomuser.me/{path1}")
+                .then()
+                .log().all()
+                .statusCode(200);
+    }
+
 
 
 
