@@ -2,10 +2,13 @@ package testng;
 
 import com.beust.ah.A;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 import utils.SeleniumDriver;
+
+import java.time.Duration;
 
 public class CreditApply {
 
@@ -74,36 +77,24 @@ public class CreditApply {
         var priceRange = driver.findElement(By.xpath("//p[@class='MuiTypography-root MuiTypography-body1 css-1fvw608']"));
 
 
-        // actions.moveToElement(leftSlider).dragAndDropBy(leftSlider,200,0).build().perform();
+        Thread.sleep(2000);
 
-        Thread.sleep(5000);
-
-
+        var actions= new Actions(driver);
+        actions.moveToElement(leftSlider).click();
         for(var count=0;count<100;count++){
-
-
-            var actions= new Actions(driver);
-            actions.dragAndDropBy(leftSlider,3,0).perform();
-            //actions.dragAndDropBy(rightSlider,5,0).perform();
-
+            actions.sendKeys(Keys.ARROW_RIGHT).pause(200).build().perform();
             if(priceRange.getText().equalsIgnoreCase("Price $ 9,900,000 - $ 10,000,000")){
                 break;
             }
 
         }
 
-
+        actions.moveToElement(rightSlider).click();
         for(var count=0;count<100;count++){
-
-
-            var actions= new Actions(driver);
-            actions.dragAndDropBy(rightSlider,3,0).perform();
-            //actions.dragAndDropBy(rightSlider,5,0).perform();
-
+            actions.sendKeys(Keys.ARROW_RIGHT).pause(200).build().perform();
             if(priceRange.getText().equalsIgnoreCase("Price $ 9,900,000 - $ 11,400,000")){
                 break;
             }
-
         }
 
 
