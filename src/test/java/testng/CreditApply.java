@@ -60,6 +60,68 @@ public class CreditApply {
 
     }
 
+    @Test
+    public void sliderTesting() throws InterruptedException {
+
+        SeleniumDriver.setupDriver();
+        WebDriver driver = SeleniumDriver.getDriver();
+        driver.get("https://www.delekhomes.com/");
+
+        var leftSlider=driver.findElement(By.xpath("//input[@data-index='0']"));
+
+        var rightSlider =driver.findElement(By.xpath("//input[@data-index='1']"));
+
+        var priceRange = driver.findElement(By.xpath("//p[@class='MuiTypography-root MuiTypography-body1 css-1fvw608']"));
+
+
+        // actions.moveToElement(leftSlider).dragAndDropBy(leftSlider,200,0).build().perform();
+
+        Thread.sleep(5000);
+
+
+        for(var count=0;count<100;count++){
+
+
+            var actions= new Actions(driver);
+            actions.dragAndDropBy(leftSlider,3,0).perform();
+            //actions.dragAndDropBy(rightSlider,5,0).perform();
+
+            if(priceRange.getText().equalsIgnoreCase("Price $ 9,900,000 - $ 10,000,000")){
+                break;
+            }
+
+        }
+
+
+        for(var count=0;count<100;count++){
+
+
+            var actions= new Actions(driver);
+            actions.dragAndDropBy(rightSlider,3,0).perform();
+            //actions.dragAndDropBy(rightSlider,5,0).perform();
+
+            if(priceRange.getText().equalsIgnoreCase("Price $ 9,900,000 - $ 11,400,000")){
+                break;
+            }
+
+        }
+
+
+
+
+        Thread.sleep(5000);
+        driver.quit();
+
+
+
+
+
+
+
+
+
+    }
+
 
 
 
