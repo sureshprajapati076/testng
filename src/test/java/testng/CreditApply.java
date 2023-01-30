@@ -2,13 +2,17 @@ package testng;
 
 import com.beust.ah.A;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.testng.annotations.Test;
 import utils.SeleniumDriver;
 
 import java.time.Duration;
+import java.util.List;
 
 public class CreditApply {
 
@@ -109,6 +113,43 @@ public class CreditApply {
 
 
 
+
+
+    }
+
+
+    @Test
+    public void testYTComments() throws InterruptedException {
+        SeleniumDriver.setupDriver();
+        WebDriver webDriver =SeleniumDriver.getDriver();
+
+        webDriver.get("https://www.youtube.com/watch?v=4IenX7OHumk");
+
+        Thread.sleep(5000);
+
+        FluentWait<WebDriver> fluentWait = new FluentWait<>(webDriver);
+
+        //trying to get 25th comment in yt video
+        WebElement ele=fluentWait
+                .withTimeout(Duration.ofSeconds(30))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(IndexOutOfBoundsException.class)
+                .until(driver-> {
+                    System.out.println("SCROLLING....");
+                    JavascriptExecutor jse = (JavascriptExecutor)driver;
+                    jse.executeScript("window.scrollBy(0,250)");
+                   List<WebElement> list = driver.findElements(By.xpath("//*[@id='content-text']"));
+
+                   return list.get(25);
+                });
+
+        System.out.println(ele.getText());
+
+
+
+        Thread.sleep(3000);
+
+        webDriver.quit();
 
 
     }
