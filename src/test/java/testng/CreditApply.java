@@ -119,7 +119,7 @@ public class CreditApply {
 
 
     @Test
-    public void testYTComments() throws InterruptedException {
+    public void testYTComments_25th_positioned() throws InterruptedException {
         SeleniumDriver.setupDriver();
         WebDriver webDriver =SeleniumDriver.getDriver();
 
@@ -149,6 +149,49 @@ public class CreditApply {
 
         Thread.sleep(3000);
 
+        webDriver.quit();
+
+
+    }
+
+
+
+
+    @Test
+    public void testYTCommentsScrollingTo_10_Count() throws InterruptedException {
+        SeleniumDriver.setupDriver();
+        WebDriver webDriver =SeleniumDriver.getDriver();
+
+        webDriver.get("https://www.youtube.com/watch?v=4IenX7OHumk");
+        JavascriptExecutor jse = (JavascriptExecutor) webDriver;
+        Thread.sleep(5000);
+        jse.executeScript("window.scrollBy(0,850)");
+        Thread.sleep(5000);
+
+        // https://stackoverflow.com/questions/57116024/using-selenium-how-can-i-only-find-first-n-elements-to-run-faster
+
+        int lowerLimit= 0;
+        int count=0;
+        String xpathString="(//*[@id='content-text'])[position()>LOWER_LIMIT]";
+        List<WebElement> list;
+        for(int i=0;i<10;i++) {
+            System.out.println("SCROLLING....");
+            if (lowerLimit == 0) {
+                list = webDriver.findElements(By.xpath(xpathString.replace("LOWER_LIMIT", "0")));
+            } else {
+                list = webDriver.findElements(By.xpath(xpathString.replace("LOWER_LIMIT", String.valueOf(lowerLimit))));
+            }
+
+            count += list.size();
+            lowerLimit = count;
+            System.out.println("========SIZE OF ELEMENTS RETRIEVED: ========== "+list.size());
+            list.forEach(x -> System.out.println(x.getText()));
+            if (!list.isEmpty()) {
+                jse.executeScript("arguments[0].scrollIntoView(true);", list.get(list.size() - 1));
+            }
+            Thread.sleep(3000);
+        }
+        Thread.sleep(3000);
         webDriver.quit();
 
 
