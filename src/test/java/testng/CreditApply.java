@@ -164,7 +164,7 @@ public class CreditApply {
 
         webDriver.get("https://www.youtube.com/watch?v=4IenX7OHumk");
         JavascriptExecutor jse = (JavascriptExecutor) webDriver;
-        Thread.sleep(5000);
+        new Actions(webDriver).pause(4000).sendKeys(Keys.ESCAPE).pause(2000).build().perform();
         jse.executeScript("window.scrollBy(0,850)");
         Thread.sleep(5000);
 
@@ -172,10 +172,14 @@ public class CreditApply {
 
         int lowerLimit= 0;
         int count=0;
-        String xpathString="(//*[@id='content-text'])[position()>LOWER_LIMIT]";
+        String xpathString="(//ytd-comment-thread-renderer[@class='style-scope ytd-item-section-renderer'])[position()>LOWER_LIMIT]";
+        String xpathUser=".//a[@id='author-text']";
+        String xpathComment=".//*[@id='content-text']";
+
         List<WebElement> list;
+        System.out.println("**************************************************************************************************************************************");
         for(int i=0;i<10;i++) {
-            System.out.println("SCROLLING....");
+           // System.out.println("SCROLLING....");
             if (lowerLimit == 0) {
                 list = webDriver.findElements(By.xpath(xpathString.replace("LOWER_LIMIT", "0")));
             } else {
@@ -184,8 +188,23 @@ public class CreditApply {
 
             count += list.size();
             lowerLimit = count;
-            System.out.println("========SIZE OF ELEMENTS RETRIEVED: ========== "+list.size());
-            list.forEach(x -> System.out.println(x.getText()));
+
+          //  System.out.println("\n========SIZE OF ELEMENTS RETRIEVED: ========== "+list.size());
+
+            list.forEach(element -> {
+                String userName = element.findElement(By.xpath(xpathUser)).getText();
+                String []comments =  element.findElement(By.xpath(xpathComment)).getText().split("\n");
+                String formattedComment=comments[0];
+                for(int counter=1;counter<comments.length;counter++){
+                    formattedComment+=String.format("\n%-20s%-30s","",comments[counter]);
+                }
+
+                System.out.printf("\n%-20s%-30s\n\n",userName,formattedComment);
+                System.out.println("\n**************************************************************************************************************************************");
+
+            });
+
+
             if (!list.isEmpty()) {
                 jse.executeScript("arguments[0].scrollIntoView(true);", list.get(list.size() - 1));
             }
