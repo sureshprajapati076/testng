@@ -12,9 +12,6 @@ import org.testng.annotations.Test;
 
 public class DockerTest {
 
-
-
-
     @Test
     public void test1() throws InterruptedException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
