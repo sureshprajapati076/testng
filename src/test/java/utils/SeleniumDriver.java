@@ -33,6 +33,7 @@ public class SeleniumDriver {
     }
 
     public static WebDriver getDriver() {
+        System.out.println("Commit for test1");
         return threadLocalDriver.get();
     }
 

@@ -1,7 +1,7 @@
 package testng;
 
 public class RandomUser {
-    public String gender;
+    public String gender="FEMALE";
     public String email;
     public String phone;
     public String cell;
