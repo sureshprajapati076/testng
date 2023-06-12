@@ -25,6 +25,7 @@ public class DockerTest {
         Thread.sleep(10000);
         driver.quit();
         System.out.println("ASSUME THIS IS REQUIRED for PROD Comit 2");
+        // Required 1
     }
 
     @Test(invocationCount = 1)
