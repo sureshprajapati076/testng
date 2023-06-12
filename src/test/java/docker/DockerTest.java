@@ -27,6 +27,7 @@ public class DockerTest {
         System.out.println("ASSUME THIS IS REQUIRED for PROD Comit 2");
         // Required 1
         // Required 2
+        // Required 3
     }
 
     @Test(invocationCount = 1)
