@@ -18,7 +18,7 @@ public class TestNGTest2 {
         waitForNSeconds(5);
 
         System.out.println("Ended Test B: at: "+ LocalDateTime.now().getSecond());
-
+        System.out.println("REVERt 2nd TESTING");
 
     }
 
