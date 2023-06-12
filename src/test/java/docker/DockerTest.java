@@ -33,6 +33,7 @@ public class DockerTest {
 
         // part 1
         // part 2
+        // part 3
 
         ChromeOptions options=new ChromeOptions();
         options.setPlatformName(Platform.LINUX.name());
