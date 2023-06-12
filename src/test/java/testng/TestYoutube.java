@@ -5,15 +5,10 @@ import io.restassured.RestAssured;
 import listners.ListnerTest;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -26,13 +21,11 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.time.Duration;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -106,7 +99,7 @@ public class TestYoutube {
         //double click
         //actions.doubleClick().build().perform();
 
-        Action action = actions.moveToElement(searchBox).click().sendKeys("yahama").build();
+        Action action = actions.moveToElement(searchBox).click().sendKeys("Automation").build();
         action.perform();
 
         searchButton.click();
@@ -114,14 +107,7 @@ public class TestYoutube {
 
         String pageTitle = this.webDriver.getTitle();
 
-
-        Wait<WebDriver> driverWait = new WebDriverWait(webDriver, Duration.ofSeconds(30));
-
-        driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='style-scope ytd-video-renderer' and contains(text(),'SPORTS JET BOAT REVIEW in ILOILO!! | 2022 Yamaha 252 SE - Philippines')]"))).click();
-
-        System.out.println("DONE");
-
-
+        Assert.assertEquals(pageTitle, "YouT ube");
 
 
         try {
@@ -158,7 +144,6 @@ public class TestYoutube {
 
 
         //explicit wait
-        */
         WebDriverWait wait= new WebDriverWait(this.webDriver, Duration.ofSeconds(40));
         WebElement webElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div")));
 
@@ -188,7 +173,7 @@ public class TestYoutube {
         });
 
 
-
+*/
 
     }
 
