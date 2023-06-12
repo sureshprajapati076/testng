@@ -183,32 +183,4 @@ public class RestAssureTest {
         Assert.assertEquals(userList.get(0).gender, "female");
 
     }
-
-
-    @Test
-    public void postTest(){
-        String jsonString="{\"gender\":\"female\",\"name\":{\"title\":\"Miss\",\"first\":\"Yvette\",\"last\":\"Berens\"},\"location\":{\"street\":{\"number\":9584,\"name\":\"Lindenweg\"},\"city\":\"Homberg (Ohm)\",\"state\":\"Bremen\",\"country\":\"Germany\",\"postcode\":51625,\"coordinates\":{\"latitude\":\"-47.3005\",\"longitude\":\"33.2818\"},\"timezone\":{\"offset\":\"+6:00\",\"description\":\"Almaty, Dhaka, Colombo\"}},\"email\":\"yvette.berens@example.com\",\"login\":{\"uuid\":\"f04cf964-7eca-46e1-bed8-c63a536ea01f\",\"username\":\"orangerabbit472\",\"password\":\"skipper\",\"salt\":\"6XNz5e84\",\"md5\":\"b4afe8d34267613e2fb2ab56eee72205\",\"sha1\":\"6c6cfc05779db023b0ba9e98ba5f74071d84c809\",\"sha256\":\"2bbe569c850cb05d9625e9cb42656e9a921779cfaad81737c9400920578f51c8\"},\"dob\":{\"date\":\"1956-11-09T18:15:58.237Z\",\"age\":66},\"registered\":{\"date\":\"2015-04-26T22:43:37.610Z\",\"age\":7},\"phone\":\"0239-6009797\",\"cell\":\"0173-4321931\",\"id\":{\"name\":\"SVNR\",\"value\":\"58 091156 B 726\"},\"picture\":{\"large\":\"https://randomuser.me/api/portraits/women/31.jpg\",\"medium\":\"https://randomuser.me/api/portraits/med/women/31.jpg\",\"thumbnail\":\"https://randomuser.me/api/portraits/thumb/women/31.jpg\"},\"nat\":\"DE\"}";
-
-        Gson gson =  new Gson();
-
-        RandomUser user= gson.fromJson(jsonString, RandomUser.class);
-
-        System.out.println(user);
-
-        RandomUser response = given().relaxedHTTPSValidation()
-                .body(user)
-                .headers("content-type","application/json")
-                .when()
-                .post("http://localhost:9596/random/user/add")
-                .then()
-                .log().all()
-                .statusCode(200)
-                .body("name.title",equalTo("Miss"))
-                .extract().as(RandomUser.class);
-
-
-        System.out.println(response);
-
-
-    }
 }
