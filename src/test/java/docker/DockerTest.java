@@ -33,9 +33,6 @@ public class DockerTest {
     @Test(invocationCount = 1)
     public void test2() throws InterruptedException {
 
-
-        // part 1
-
         ChromeOptions options=new ChromeOptions();
         options.setPlatformName(Platform.LINUX.name());
 
