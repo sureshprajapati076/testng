@@ -23,6 +23,7 @@ public class DockerTest {
         driver.get("https://youtube.com");
         Thread.sleep(10000);
         driver.quit();
+        System.out.println("ASSUME THIS IS REQUIRED for PROD Comit 2");
     }
 
     @Test(invocationCount = 1)

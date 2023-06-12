@@ -1,7 +1,7 @@
 package testng;
 
 public class RandomUser {
-    public String gender="FEMALE";
+    public String gender="MALE"; //  System.out.println("ASSUME THIS IS REQUIRED for PROD Comit 2");
     public String email;
     public String phone;
     public String cell;
