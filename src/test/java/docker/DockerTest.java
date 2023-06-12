@@ -14,7 +14,8 @@ public class DockerTest {
 
     @Test
     public void test1() throws InterruptedException {
-        System.out.println("ASSUME THIS IS REQUIRED for PROD");
+
+        // HWLLO THIS IS NEW COMMIT TESTING
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setBrowserName("firefox");  // comment this browser name then it will assign to any of available browser in hub
         capabilities.setPlatform(Platform.LINUX);
