@@ -29,7 +29,6 @@ public class DockerTest {
     @Test(invocationCount = 1)
     public void test2() throws InterruptedException {
 
-        System.out.println("TESTING REVERT");
         ChromeOptions options=new ChromeOptions();
         options.setPlatformName(Platform.LINUX.name());
 
