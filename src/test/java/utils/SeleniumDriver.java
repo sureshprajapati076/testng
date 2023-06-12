@@ -33,6 +33,7 @@ public class SeleniumDriver {
     }
 
     public static WebDriver getDriver() {
+        System.out.println("Commit for test1");
         System.out.println("ASSUME THIS IS REQUIRED for PROD Comit 2");
         return threadLocalDriver.get();
     }

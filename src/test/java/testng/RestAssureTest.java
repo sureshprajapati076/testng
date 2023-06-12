@@ -177,7 +177,6 @@ public class RestAssureTest {
         Gson gson = new Gson();
         Type listType = new TypeToken<List<RandomUser>>() {
         }.getType();
-        System.out.println("REVERt 2nd TESTING");
         List<RandomUser> userList = gson.fromJson(response.then().extract().asString(), listType);
         Assert.assertNotNull(userList);
         Assert.assertEquals(userList.size(), 5);

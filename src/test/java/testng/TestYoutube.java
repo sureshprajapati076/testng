@@ -48,7 +48,7 @@ public class TestYoutube {
     public void testBrokenLinks() throws MalformedURLException {
 
         this.webDriver.get("https://www.citi.com/");
-        System.out.println("REVERt 2nd TESTING");
+
         Assert.assertTrue(false); //Required for PROD
 
         try {
